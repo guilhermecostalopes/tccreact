@@ -1,5 +1,3 @@
-import api from '../service/api'
-
 
 let base = 'http://localhost:8080/grupos/';
 
