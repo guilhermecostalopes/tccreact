@@ -1,27 +1,27 @@
 import axios from 'axios';
 
-const USER_API_BASE_URL = 'http://localhost:8080/usuarios/';
+const base = 'http://localhost:8080/usuarios/';
 
 class ApiUsuarioService {
 
     salvar(usuario){
-        return axios.post(""+USER_API_BASE_URL, usuario);
+        if(grupo.id === null || grupo.id === undefined){
+            return axios.post(base + 'inserir', usuario);
+        } else {
+            return axios.put(base + '/alterar/' + usuario.id, usuario);
+        }
     }
 
-    alterar(usuario) {
-        return axios.put(USER_API_BASE_URL + '/' + usuario.id, usuario);
+    pesquisar(grupo) {
+        return axios.post(base + '/listar', usuario);
     }
 
-    pesquisar(usuario) {
-        return axios.post(""+USER_API_BASE_URL, usuario);
+    excluir(grupo) {
+        return axios.delete(base + '/' + usuario);
     }
 
-    excluir(usuario) {
-        return axios.delete(USER_API_BASE_URL + '/' + usuario);
-    }
-
-    buscarPorId(usuario) {
-        return axios.get(BASE_SISTEMA + this.base + '/' + usuario);
+    buscarPorId(grupo) {
+        return axios.get(base + '/' + usuario);
     }
 }
 

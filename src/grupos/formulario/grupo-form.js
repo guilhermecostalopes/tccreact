@@ -30,7 +30,7 @@ class GrupoForm extends Component {
                 summary: err.response.data.tipoMensagem.sumario, 
                 detail: err.response.data.tipoMensagem.mensagem});
         });
-    }//res.data.
+    }
 
     render() {
         return (
