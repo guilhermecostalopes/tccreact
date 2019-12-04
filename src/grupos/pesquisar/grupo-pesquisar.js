@@ -4,6 +4,7 @@ import ApiGrupoService from '../../service/ApiServiceGrupo';
 
 import {DataTable} from 'primereact/datatable';
 import {Column} from 'primereact/column';
+import {Button} from 'primereact/button';
 
 class GrupoPesquisa extends Component {
 
@@ -18,14 +19,14 @@ class GrupoPesquisa extends Component {
     );
   }
 
-    render() {
-        return (
-          <DataTable value={this.grupos} selection={this.state.selectedGrupo} 
-            onSelectionChange={e => this.setState({selectedGrupo: e.value})}>
-            <Column field="nome" header="Nome" />
-          </DataTable>
-        );
-      }
+  render() {
+    return (
+      <DataTable value={this.grupos} selection={this.state.selectedGrupo} 
+        onSelectionChange={e => this.setState({selectedGrupo: e.value})}>
+        <Column field="nome" header="Nome" />
+      </DataTable>
+    );
+  }
 }
 
 export default GrupoPesquisa;
