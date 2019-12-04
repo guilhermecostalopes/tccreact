@@ -3,39 +3,43 @@ import ApiGrupoService from '../../service/ApiServiceGrupo';
 
 import {InputText} from 'primereact/inputtext';
 import {Button} from 'primereact/button';
-
+import {Growl} from 'primereact/growl';
 
 class GrupoForm extends Component {
 
     constructor(props) {
         super(props);
         this.grupo ={
-            id: '',
-            nome: ''
+            id: null,
+            nome: null
         }
         this.salvarGrupo = this.salvarGrupo.bind(this);
     }
 
     salvarGrupo = (e) => {
         e.preventDefault();
-        let grupo = {id: this.grupo.id, 
-                    nome: this.grupo.nome};
+        let grupo = {id: this.state.id, 
+                    nome: this.state.nome};
         ApiGrupoService.salvar(grupo)
             .then(res => {
-                this.setState({message : 'Grupo salvo com sucesso !'});
-                this.props.history.push('/grupoForm');
+                this.growl.show({severity: res.data.tipoMensagem.tipo, 
+                    summary: res.data.tipoMensagem.sumario, 
+                    detail: res.data.tipoMensagem.mensagem});
+        }, (err) => {
+            this.growl.show({severity: err.response.data.tipoMensagem.tipo, 
+                summary: err.response.data.tipoMensagem.sumario, 
+                detail: err.response.data.tipoMensagem.mensagem});
         });
-    }
-
-    onChange = (e) =>
-        this.setState({ [e.target.name]: e.target.value });
+    }//res.data.
 
     render() {
         return (
-            <div>
-                <h1>Nome *</h1>
-                <InputText value={this.grupo.nome} onChange={this.onChange} />
-                <Button variant="contained" color="primary" onClick={this.salvarGrupo}>Salvar</Button>
+        <div>
+            <Growl ref={el => (this.growl = el)} />
+            <h1>Nome *</h1>
+            <InputText value={this.grupo.nome} 
+                onChange={(e) => this.setState({nome: e.target.value})} />
+            <Button onClick={this.salvarGrupo} label="Salvar" />
         </div>
     );
   }
