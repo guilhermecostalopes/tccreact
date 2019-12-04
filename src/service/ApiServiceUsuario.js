@@ -1,26 +1,26 @@
 import axios from 'axios';
 
-const base = 'http://localhost:8080/usuarios/';
+let base = 'http://localhost:8080/usuarios/';
 
 class ApiUsuarioService {
 
     salvar(usuario){
-        if(grupo.id === null || grupo.id === undefined){
+        if(usuario.id === null || usuario.id === undefined){
             return axios.post(base + 'inserir', usuario);
         } else {
             return axios.put(base + '/alterar/' + usuario.id, usuario);
         }
     }
 
-    pesquisar(grupo) {
+    pesquisar(usuario) {
         return axios.post(base + '/listar', usuario);
     }
 
-    excluir(grupo) {
+    excluir(usuario) {
         return axios.delete(base + '/' + usuario);
     }
 
-    buscarPorId(grupo) {
+    buscarPorId(usuario) {
         return axios.get(base + '/' + usuario);
     }
 }

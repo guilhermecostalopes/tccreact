@@ -12,6 +12,10 @@ class ApiGrupoService {
         }
     }
 
+    todos() {
+        return axios.get(base + '/todos');
+    }
+
     pesquisar(grupo) {
         return axios.post(base + '/listar', grupo);
     }
