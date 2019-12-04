@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 
 import ApiGrupoService from '../../service/ApiServiceGrupo';
 
@@ -13,18 +14,33 @@ class GrupoPesquisa extends Component {
     this.state = {};
   }
 
+  displaySelection(data) {
+    
+  }
+
   componentDidMount() {
     ApiGrupoService.todos().then(
-      data => this.setState({grupos: data.lista})
+      res => this.setState({grupos: res.data.lista})
     );
   }
 
   render() {
+
     return (
-      <DataTable value={this.grupos} selection={this.state.selectedGrupo} 
-        onSelectionChange={e => this.setState({selectedGrupo: e.value})}>
-        <Column field="nome" header="Nome" />
-      </DataTable>
+      <>
+        <DataTable value={this.state.grupos}  footer={this.displaySelection(this.state.selectedGrupo)}
+          selection={this.state.selectedGrupo} onSelectionChange={e => this.setState({selectedGrupo: e.value})}>
+          <Column selectionMode="single" style={{width:'4em'}}/>
+          <Column field="nome" header="Nome" />
+        </DataTable>
+        <Button icon="pi pi-filter" tooltip="Pesquisar" tooltipOptions={{position: 'bottom'}} />
+        <Link to='/grupoForm'>
+          <Button icon="pi pi-plus-circle" tooltip="Novo" tooltipOptions={{position: 'bottom'}} />
+        </Link>
+        <Button icon="pi pi-ban" tooltip="Limpar" tooltipOptions={{position: 'bottom'}}  />
+        <Button icon="pi pi-pencil" tooltip="Alterar" tooltipOptions={{position: 'bottom'}}  />
+        <Button icon="pi pi-trash" tooltip="Deletar" tooltipOptions={{position: 'bottom'}}  />
+      </>
     );
   }
 }
