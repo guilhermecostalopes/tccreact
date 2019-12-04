@@ -12,6 +12,10 @@ class ApiUsuarioService {
         }
     }
 
+    todos() {
+        return axios.get(base + '/todos');
+    }
+
     pesquisar(usuario) {
         return axios.post(base + '/listar', usuario);
     }

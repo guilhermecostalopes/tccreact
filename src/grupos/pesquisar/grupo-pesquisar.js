@@ -20,8 +20,8 @@ class GrupoPesquisa extends Component {
 
     render() {
         return (
-          <DataTable value={this.grupos} selection={this.state.selectedCar1} 
-            onSelectionChange={e => this.setState({selectedCar1: e.value})}>
+          <DataTable value={this.grupos} selection={this.state.selectedGrupo} 
+            onSelectionChange={e => this.setState({selectedGrupo: e.value})}>
             <Column field="nome" header="Nome" />
           </DataTable>
         );
