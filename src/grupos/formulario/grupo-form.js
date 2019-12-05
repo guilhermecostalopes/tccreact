@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import ApiGrupoService from '../../service/ApiServiceGrupo';
 
 import {InputText} from 'primereact/inputtext';
 import {Button} from 'primereact/button';
 import {Growl} from 'primereact/growl';
+import {Toolbar} from 'primereact/toolbar';
 
 class GrupoForm extends Component {
 
@@ -34,13 +36,27 @@ class GrupoForm extends Component {
 
     render() {
         return (
-        <div>
+        <>
             <Growl ref={el => (this.growl = el)} />
-            <h1>Nome *</h1>
-            <InputText value={this.grupo.nome} 
-                onChange={(e) => this.setState({nome: e.target.value})} />
-            <Button onClick={this.salvarGrupo} label="Salvar" />
-        </div>
+            <Toolbar style={{background:'#007ad9'}}>
+                <font style={{color: '#f0f8ff'}}>Grupo novo</font>
+            </Toolbar>
+            <Toolbar style={{background:'#FFFCFC'}}>
+                <label for="nome" class="first">Nome *</label><br />
+                <InputText value={this.grupo.nome} 
+                    onChange={(e) => this.setState({nome: e.target.value})} />
+            </Toolbar>
+            <Toolbar>
+                <Button onClick={this.salvarGrupo} icon="pi pi-save" 
+                    tooltip="Salvar" tooltipOptions={{position: 'bottom'}} />&nbsp;
+                <Button icon="pi pi-refresh" tooltip="Limpar" 
+                    tooltipOptions={{position: 'bottom'}} />&nbsp;
+                <Link to='/grupoPesquisa'>
+                    <Button icon="pi pi-angle-double-left" tooltip="Voltar" 
+                        tooltipOptions={{position: 'bottom'}} />&nbsp;
+                </Link>
+            </Toolbar>
+        </>
     );
   }
 }

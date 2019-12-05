@@ -6,6 +6,7 @@ import ApiUsuarioService from '../../service/ApiServiceUsuario';
 import {DataTable} from 'primereact/datatable';
 import {Column} from 'primereact/column';
 import {Button} from 'primereact/button';
+import {Toolbar} from 'primereact/toolbar';
 
 class UsuarioPesquisa extends Component {
 
@@ -35,13 +36,16 @@ class UsuarioPesquisa extends Component {
           <Column field="sobrenome" header="Sobrenome" />
           <Column field="dataAniversario" header="Data de aniversário" />
         </DataTable><br/>
-        <Button icon="pi pi-filter" tooltip="Pesquisar" tooltipOptions={{position: 'bottom'}} />
-        <Link to='/usuarioForm'>
-          <Button icon="pi pi-plus-circle" tooltip="Novo" tooltipOptions={{position: 'bottom'}} />
-        </Link>
-        <Button icon="pi pi-ban" tooltip="Limpar" tooltipOptions={{position: 'bottom'}}  />
-        <Button icon="pi pi-pencil" tooltip="Alterar" tooltipOptions={{position: 'bottom'}}  />
-        <Button icon="pi pi-trash" tooltip="Deletar" tooltipOptions={{position: 'bottom'}}  />
+        <Toolbar>
+          <h4>Campos com * são obrigatórios !</h4>
+          <Button icon="pi pi-filter" tooltip="Pesquisar" tooltipOptions={{position: 'bottom'}} />&nbsp;
+          <Link to='/usuarioForm'>
+            <Button icon="pi pi-plus-circle" tooltip="Novo" tooltipOptions={{position: 'bottom'}} />
+          </Link>&nbsp;
+          <Button icon="pi pi-ban" tooltip="Limpar" tooltipOptions={{position: 'bottom'}}  />&nbsp;
+          <Button icon="pi pi-pencil" tooltip="Alterar" tooltipOptions={{position: 'bottom'}}  />&nbsp;
+          <Button icon="pi pi-trash" tooltip="Deletar" tooltipOptions={{position: 'bottom'}}  />&nbsp;
+        </Toolbar>
       </>
     );
   }
