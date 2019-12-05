@@ -16,13 +16,23 @@ class GrupoPesquisa extends Component {
   }
 
   displaySelection(data) {
-    
+    if(data) {
+      this.setState({alterarGrupo: data.id})
+    }
   }
 
   componentDidMount() {
     ApiGrupoService.todos().then(
       res => this.setState({grupos: res.data.lista})
     );
+  }
+
+  alterar(){
+    if(this.state.alterarGrupo === undefined){
+      this.growl.show({severity: 'error', 
+      summary: 'Mensagem de erro', 
+      detail: 'Deve selecionar uma linha da grade para alterar !'});
+    }
   }
 
   render() {
@@ -41,7 +51,7 @@ class GrupoPesquisa extends Component {
             <Button icon="pi pi-plus-circle" tooltip="Novo" tooltipOptions={{position: 'bottom'}} />
           </Link>&nbsp;
           <Button icon="pi pi-ban" tooltip="Limpar" tooltipOptions={{position: 'bottom'}}  />&nbsp;
-          <Button icon="pi pi-pencil" tooltip="Alterar" tooltipOptions={{position: 'bottom'}}  />&nbsp;
+          <Button icon="pi pi-pencil" onClick={this.alterar} tooltip="Alterar" tooltipOptions={{position: 'bottom'}}  />&nbsp;
           <Button icon="pi pi-trash" tooltip="Deletar" tooltipOptions={{position: 'bottom'}}  />&nbsp;
         </Toolbar>
       </>
