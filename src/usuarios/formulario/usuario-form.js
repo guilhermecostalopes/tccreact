@@ -15,6 +15,20 @@ class UsuarioForm extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      grupo: {
+        id: '',
+        grupo: '',
+        nome: '',
+        sobrenome: '',
+        dataAniversario: ''
+      }
+    }
+    this.state = {
+      grupos: {
+
+      }
+    }
     this.usuario = {
         id: null,
         grupo: null,
@@ -43,12 +57,11 @@ class UsuarioForm extends Component {
       });
   }
 
-
   componentDidMount() {
     this.setState({
       grupos: [ApiGrupoService.todos().then(
         res => {
-          return res;
+          return res.data.lista;
         }
       )]
     })

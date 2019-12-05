@@ -11,6 +11,12 @@ class GrupoForm extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            grupo: {
+                id: '',
+                nome: ''
+            }
+        }
         this.grupo ={
             id: null,
             nome: null
