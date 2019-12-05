@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 
 import ApiUsuarioService from '../../service/ApiServiceUsuario';
 import ApiGrupoService from '../../service/ApiServiceGrupo';
@@ -8,6 +9,7 @@ import {Button} from 'primereact/button';
 import {Growl} from 'primereact/growl';
 import {Calendar} from 'primereact/calendar';
 import {Dropdown} from 'primereact/dropdown';
+import {Toolbar} from 'primereact/toolbar';
 
 class UsuarioForm extends Component {
 
@@ -53,23 +55,37 @@ class UsuarioForm extends Component {
   render() {
     
     return (
-      <div>
-            <Growl ref={el => (this.growl = el)} />
-            <h1>Grupo *</h1>
-            <Dropdown value={this.usuario.grupo} options={this.state.grupos}
-              onChange={(e) => {this.setState({grupo: e.value})}} 
-              placeholder="Selecione o grupo"/>
-            <h1>Nome *</h1>
-            <InputText value={this.usuario.nome} 
-                onChange={(e) => this.setState({nome: e.target.value})} /><br/>
-            <h1>Sobrenome *</h1>
-            <InputText value={this.usuario.sobrenome} 
-                onChange={(e) => this.setState({sobrenome: e.target.value})} /><br/>
-            <h1>Aniversário *</h1>
-            <Calendar value={this.usuario.dataAniversario} dateFormat="dd/mm/yy"
-                onChange={(e) => this.setState({dataAniversario: e.value})} /><br/>
-            <Button onClick={this.salvarUsuario} label="Salvar" />
-        </div>
+      <>
+        <Growl ref={el => (this.growl = el)} />
+        <Toolbar style={{background:'#007ad9'}}>
+          <font style={{color: '#f0f8ff'}}>Usuário novo</font>
+        </Toolbar>
+        <Toolbar style={{background:'#FFFCFC'}}>
+          <label for="nome" class="first">Grupo *</label><br />
+          <Dropdown value={this.usuario.grupo} 
+            onChange={(e) => {this.setState({grupo: e.value})}} 
+            placeholder="Selecione o grupo"/><br />
+          <label for="nome" class="first">Nome *</label><br />
+          <InputText value={this.usuario.nome} 
+            onChange={(e) => this.setState({nome: e.target.value})} /><br/>
+          <label for="nome" class="first">Sobrenome *</label><br />
+          <InputText value={this.usuario.sobrenome} 
+            onChange={(e) => this.setState({sobrenome: e.target.value})} /><br/>
+          <label for="nome" class="first">Aniversário *</label><br />
+          <Calendar value={this.usuario.dataAniversario} dateFormat="dd/mm/yy"
+            onChange={(e) => this.setState({dataAniversario: e.value})} /><br/>
+        </Toolbar>
+        <Toolbar>
+          <Button onClick={this.salvarUsuario} icon="pi pi-save" 
+            tooltip="Salvar" tooltipOptions={{position: 'bottom'}} />&nbsp;
+          <Button icon="pi pi-refresh" tooltip="Limpar" 
+            tooltipOptions={{position: 'bottom'}} />&nbsp;
+          <Link to='/usuarioPesquisa'>
+            <Button icon="pi pi-angle-double-left" tooltip="Voltar" 
+              tooltipOptions={{position: 'bottom'}} />&nbsp;
+          </Link>
+        </Toolbar>
+      </>
     );
   }
 }
