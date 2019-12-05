@@ -35,6 +35,7 @@ class UsuarioPesquisa extends Component {
           <Column field="nome" header="Nome" />
           <Column field="sobrenome" header="Sobrenome" />
           <Column field="dataAniversario" header="Data de aniversário" />
+          <Column field="dataCadastro" header="Data do cadastro" />
         </DataTable><br/>
         <Toolbar>
           <h4>Campos com * são obrigatórios !</h4>

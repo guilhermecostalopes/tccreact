@@ -43,6 +43,7 @@ class GrupoPesquisa extends Component {
           selection={this.state.selectedGrupo} onSelectionChange={e => this.setState({selectedGrupo: e.value})}>
           <Column selectionMode="single" style={{width:'4em'}}/>
           <Column field="nome" header="Nome" />
+          <Column field="dataCadastro" header="Data do cadastro" />
         </DataTable>
         <Toolbar>
           <h4>Campos com * são obrigatórios !</h4>

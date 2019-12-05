@@ -47,7 +47,9 @@ class UsuarioForm extends Component {
   componentDidMount() {
     this.setState({
       grupos: [ApiGrupoService.todos().then(
-        res => this.setState({grupos: res.data.lista})
+        res => {
+          return res;
+        }
       )]
     })
   }

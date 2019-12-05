@@ -14,7 +14,9 @@ ReactDOM.render(
       <Route path="/" exact={true} component={App} />
       <Route path="/usuarioPesquisa" component={UsuarioPesquisa} />
       <Route path="/usuarioForm" component={UsuarioForm} />
+      <Route path="/usuarioForm/:id" component={UsuarioForm} />
       <Route path="/grupoForm" component={GrupoForm} />
+      <Route path="/grupoForm/:id" component={GrupoForm} />
       <Route path="/grupoPesquisa" component={GrupoPesquisa} />
     </Switch>
   </BrowserRouter>,
