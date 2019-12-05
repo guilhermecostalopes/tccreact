@@ -8,6 +8,7 @@ import GrupoForm from './grupos/formulario/grupo-form';
 import './index.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
+import {AppMenu} from './menu'
 
 ReactDOM.render(
   <BrowserRouter>

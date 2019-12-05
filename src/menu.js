@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-import './App.css';
+import {Menubar} from 'primereact/components/menubar/Menubar';
 
-import {Menubar} from 'primereact/menubar';
-
-import 'primereact/resources/themes/nova-light/theme.css';
-import 'primereact/resources/primereact.min.css';
-import 'primeicons/primeicons.css';
-
-class App extends Component {
-
-  navigateToPage = (path) => {
+export class AppMenu extends Component {
+    
+    navigateToPage = (path) => {
 		console.log('Navigate to path ' + path);
 		this.props.history.push(path);
 	}
@@ -37,15 +31,11 @@ class App extends Component {
 
   render() {
     return (
-      <>
-      <div>
-        <Menubar model={this.state.items} />
-      </div>
-      <div className="App">
-      </div>
-      </>
+        <div>
+          <Menubar model={this.state.items} />
+        </div>
     );
   }
 }
 
-export default App;
+export default AppMenu
