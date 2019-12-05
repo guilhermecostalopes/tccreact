@@ -41,20 +41,22 @@ class UsuarioForm extends Component {
       });
   }
 
-  render() {
 
-    let a = [
-      ApiGrupoService.todos().then(
-        res => {
-          return res;
-      })
-    ]
+  componentDidMount() {
+    this.setState({
+      grupos: [ApiGrupoService.todos().then(
+        res => this.setState({grupos: res.data.lista})
+      )]
+    })
+  }
+  
+  render() {
     
     return (
       <div>
             <Growl ref={el => (this.growl = el)} />
             <h1>Grupo *</h1>
-            <Dropdown value={this.usuario.grupo} options={a}
+            <Dropdown value={this.usuario.grupo} options={this.state.grupos}
               onChange={(e) => {this.setState({grupo: e.value})}} 
               placeholder="Selecione o grupo"/>
             <h1>Nome *</h1>
