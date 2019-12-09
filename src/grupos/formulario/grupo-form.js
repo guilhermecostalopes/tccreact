@@ -9,6 +9,11 @@ import {Toolbar} from 'primereact/toolbar';
 
 class GrupoForm extends Component {
 
+    navigateToPage = (path) => {
+		console.log('Navigate to path ' + path);
+		this.props.history.push(path);
+	}
+
     constructor(props) {
         super(props);
         this.state = {
@@ -17,11 +22,22 @@ class GrupoForm extends Component {
                 nome: ''
             }
         }
-        this.grupo ={
-            id: null,
-            nome: null
-        }
         this.salvarGrupo = this.salvarGrupo.bind(this);
+    }
+
+    componentWillMount = () => {
+        const localizacao = this.props.location.pathname;
+        const contar = localizacao.split("/");
+        if(contar.length === 3){
+            this.state = {
+                grupo : 
+                    ApiGrupoService.buscarPorId(contar[2]).then(
+                        res => {
+                          return res.data;
+                })
+                
+            }
+        }
     }
 
     salvarGrupo = (e) => {
@@ -33,6 +49,9 @@ class GrupoForm extends Component {
                 this.growl.show({severity: res.data.tipoMensagem.tipo, 
                     summary: res.data.tipoMensagem.sumario, 
                     detail: res.data.tipoMensagem.mensagem});
+            setTimeout(() => {
+                this.navigateToPage('/grupoPesquisa')
+            }, 3000);
         }, (err) => {
             this.growl.show({severity: err.response.data.tipoMensagem.tipo, 
                 summary: err.response.data.tipoMensagem.sumario, 
@@ -45,11 +64,11 @@ class GrupoForm extends Component {
         <>
             <Growl ref={el => (this.growl = el)} />
             <Toolbar style={{background:'#007ad9'}}>
-                <font style={{color: '#f0f8ff'}}>Grupo novo</font>
+                <font style={{color: '#f0f8ff'}}>Grupo {this.state.grupo.id}</font>
             </Toolbar>
             <Toolbar style={{background:'#FFFCFC'}}>
                 <label for="nome" class="first">Nome *</label><br />
-                <InputText value={this.grupo.nome} 
+                <InputText value={this.state.grupo.nome} 
                     onChange={(e) => this.setState({nome: e.target.value})} />
             </Toolbar>
             <Toolbar>

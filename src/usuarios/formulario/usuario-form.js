@@ -13,6 +13,11 @@ import {Toolbar} from 'primereact/toolbar';
 
 class UsuarioForm extends Component {
 
+  navigateToPage = (path) => {
+		console.log('Navigate to path ' + path);
+		this.props.history.push(path);
+	}
+
   constructor(props) {
     super(props);
     this.state = {
@@ -48,6 +53,9 @@ class UsuarioForm extends Component {
         this.growl.show({severity: res.data.tipoMensagem.tipo, 
             summary: res.data.tipoMensagem.sumario, 
             detail: res.data.tipoMensagem.mensagem});
+            setTimeout(() => {
+              this.navigateToPage('/usuarioPesquisa')
+          }, 3000);
       }, (err) => {
           this.growl.show({severity: err.response.data.tipoMensagem.tipo, 
               summary: err.response.data.tipoMensagem.sumario, 

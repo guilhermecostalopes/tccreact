@@ -22,7 +22,10 @@ class UsuarioPesquisa extends Component {
   }
 
   displaySelection(data) {
-    
+    if(data) {
+      const id = data.id
+      this.navigateToPage('/usuarioForm/' + id)
+    }
   }
 
   render() {

@@ -10,6 +10,11 @@ import {Toolbar} from 'primereact/toolbar';
 
 class GrupoPesquisa extends Component {
 
+  navigateToPage = (path) => {
+		console.log('Navigate to path ' + path);
+		this.props.history.push(path);
+	}
+
   constructor() {
     super();
     this.state = {};
@@ -17,7 +22,8 @@ class GrupoPesquisa extends Component {
 
   displaySelection(data) {
     if(data) {
-      this.setState({alterarGrupo: data.id})
+      const id = data.id
+      this.navigateToPage('/grupoForm/' + id)
     }
   }
 
