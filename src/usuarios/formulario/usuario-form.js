@@ -25,9 +25,7 @@ class UsuarioForm extends Component {
       }
     }
     this.state = {
-      grupos: {
-
-      }
+      grupos: []
     }
     this.usuario = {
         id: null,
@@ -64,7 +62,7 @@ class UsuarioForm extends Component {
           return res.data.lista;
         }
       )]
-    })
+    }, console.log("grupos", this.state.grupos))
   }
   
   render() {
@@ -77,7 +75,7 @@ class UsuarioForm extends Component {
         </Toolbar>
         <Toolbar style={{background:'#FFFCFC'}}>
           <label for="nome" class="first">Grupo *</label><br />
-          <Dropdown value={this.usuario.grupo} 
+          <Dropdown value={this.usuario.grupo} options={this.state.grupos}
             onChange={(e) => {this.setState({grupo: e.value})}} 
             placeholder="Selecione o grupo"/><br />
           <label for="nome" class="first">Nome *</label><br />
